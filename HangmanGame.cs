@@ -20,7 +20,7 @@ namespace HangManStarterKit
         // MAKING PLAYER VARIABLE
         Player guesser;
 
-        // ADD PLAYER TO EACH CONSTRUCTOR
+        // ADD PLAYER TO CONSTRUCTOR
         // FIRST CONSTRUCTOR
         public HangmanGame(Player guesser)
         {
@@ -31,7 +31,7 @@ namespace HangManStarterKit
 
             Setup();
         }
-        // ADD PLAYER TO CONSTRUCTOR
+        // ADD PLAYER TO CONSTRUCTOR AND WORD FOR TESTING PURPOSES
         //SECOND CONSTRUCTOR
         public HangmanGame(Player guesser, string word)
         {
@@ -90,7 +90,7 @@ namespace HangManStarterKit
             else if (word.Contains(guess))
             {
                 Console.WriteLine("Found a letter!");
-                for (int i = 0; i <= word.Length-1; i++)
+                for (int i = 0; i < word.Length; i++)
                 {
                     if (word[i] == guess)
                     {                        

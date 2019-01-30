@@ -11,7 +11,7 @@ namespace HangManStarterKit
         static void Main(string[] args)
         {
             // POLYMORPHISM!!!
-            Player p1 = new ABCplayer();            
+            Player p1 = new ABCplayer();
             Player p2 = new RandomPlayer();
             Player p3 = new SmartyPants();
             Player p4 = new HumanPlayer();
@@ -20,7 +20,7 @@ namespace HangManStarterKit
             x.Add(p1);
             x.Add(p2);
             x.Add(p3);
-            //x.Add(p4);
+            x.Add(p4);
 
             double sumABC = 0;
             double sumRandom = 0;
@@ -28,19 +28,23 @@ namespace HangManStarterKit
             double averageABC = 0;
             double averageRandom = 0;
             double averageSmarty = 0;
+            double sumHuman = 0;
+            double averageHuman = 0;
             List<int> tries = new List<int>();
 
+            // BRUTEFORCE PLAYER
             int wins = 1;
-                do
-                {
-                    p1.Reset();
-                    HangmanGame hg = new HangmanGame(p1);
-                    tries.Add(hg.tries);
-                    sumABC += hg.tries;
-                    wins++;
-                } while (wins <= 10);
+            do
+            {
+                p1.Reset();
+                HangmanGame hg = new HangmanGame(p1);
+                tries.Add(hg.tries);
+                sumABC += hg.tries;
+                wins++;
+            } while (wins <= 10);
             averageABC = sumABC / 10;
 
+            // RANDOM GUESS PLAYER
             wins = 1;
             do
             {
@@ -51,6 +55,7 @@ namespace HangManStarterKit
             } while (wins <= 10);
             averageRandom = sumRandom / 10;
 
+            // SMART PLAYER
             wins = 1;
             do
             {
@@ -61,21 +66,37 @@ namespace HangManStarterKit
             } while (wins <= 10);
             averageSmarty = sumSmarty / 10;
 
+            // HUMAN PLAYER
+            wins = 1;
+            do
+            {
+                p4.Reset();
+                HangmanGame hg = new HangmanGame(p4);
+                sumHuman += hg.tries;
+                wins++;
+            } while (wins <= 10);
+            averageHuman = sumHuman / 10;
+
             Console.WriteLine("ABC tries: " + averageABC);
             Console.WriteLine("Random tries: " + averageRandom);
             Console.WriteLine("Smarty tries: " + averageSmarty);
+            Console.WriteLine("Human tries: " + averageHuman);
 
-            if(averageSmarty < averageABC && averageSmarty < averageRandom)
+            if (averageSmarty < averageABC && averageSmarty < averageRandom && averageSmarty < averageHuman)
             {
                 Console.WriteLine($"SmartyPants is the smartest person around!");
             }
-            else if (averageABC < averageRandom && averageABC < averageSmarty)
+            else if (averageABC < averageRandom && averageABC < averageSmarty && averageABC < averageHuman)
             {
-                Console.WriteLine($"BruteForce wins!");
+                Console.WriteLine($"BruteForce Wins!");
+            }
+            else if (averageRandom < averageSmarty && averageRandom < averageABC && averageRandom < averageHuman)
+            {
+                Console.WriteLine("Random Wins!");
             }
             else
             {
-                Console.WriteLine($"Random wins!");
+                Console.WriteLine("YOU ARE THE SMARTEST AROUND!!");
             }
 
             Console.WriteLine("Press any key to exit...");

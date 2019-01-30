@@ -12,10 +12,8 @@ namespace HangManStarterKit
         {            
             char[] smartAlpabet = "aeioutnsrhldcmfpgwybvkxjqz".ToCharArray();
             char[] oxfordDictionary = "eariotnslcudpmhgbfywkvxzjq".ToCharArray();
-            //return smartAlpabet[x++];
-            return oxfordDictionary[x++];
+            return smartAlpabet[x++];
+            //return oxfordDictionary[x++];
         }
-
-
     }
 }
