@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,9 @@ namespace HangManStarterKit
             x.Add(p1);
             x.Add(p2);
             x.Add(p3);
-            x.Add(p4);
+            //x.Add(p4);
 
+            int wins = 0;
             double sumABC = 0;
             double sumRandom = 0;
             double sumSmarty = 0;
@@ -33,7 +35,7 @@ namespace HangManStarterKit
             List<int> tries = new List<int>();
 
             // BRUTEFORCE PLAYER
-            int wins = 1;
+            wins = 1;
             do
             {
                 p1.Reset();
@@ -41,8 +43,8 @@ namespace HangManStarterKit
                 tries.Add(hg.tries);
                 sumABC += hg.tries;
                 wins++;
-            } while (wins <= 10);
-            averageABC = sumABC / 10;
+            } while (wins <= 1000);
+            averageABC = sumABC / wins;
 
             // RANDOM GUESS PLAYER
             wins = 1;
@@ -52,8 +54,8 @@ namespace HangManStarterKit
                 HangmanGame hg = new HangmanGame(p2);
                 sumRandom += hg.tries;
                 wins++;
-            } while (wins <= 10);
-            averageRandom = sumRandom / 10;
+            } while (wins <= 1000);
+            averageRandom = sumRandom / wins;
 
             // SMART PLAYER
             wins = 1;
@@ -63,19 +65,19 @@ namespace HangManStarterKit
                 HangmanGame hg = new HangmanGame(p3);
                 sumSmarty += hg.tries;
                 wins++;
-            } while (wins <= 10);
-            averageSmarty = sumSmarty / 10;
+            } while (wins <= 1000);
+            averageSmarty = sumSmarty / wins;
 
-            // HUMAN PLAYER
-            wins = 1;
-            do
-            {
-                p4.Reset();
-                HangmanGame hg = new HangmanGame(p4);
-                sumHuman += hg.tries;
-                wins++;
-            } while (wins <= 10);
-            averageHuman = sumHuman / 10;
+            //// HUMAN PLAYER
+            //wins = 1;
+            //do
+            //{
+            //    p4.Reset();
+            //    HangmanGame hg = new HangmanGame(p4);
+            //    sumHuman += hg.tries;
+            //    wins++;
+            //} while (wins <= 10);
+            //averageHuman = sumHuman / 10;
 
             Console.WriteLine("ABC tries: " + averageABC);
             Console.WriteLine("Random tries: " + averageRandom);

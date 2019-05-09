@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +15,11 @@ namespace HangManStarterKit
 
         public List<char> guessedLetters = new List<char>();
         public List<char> foundLetters = new List<char>();
+        string[] lines = File.ReadAllLines(@"C:\git\HangManStarterKit-master\words.txt");
 
-        List<string> wordBank = new List<string> { "fish", "apple", "tree", "dog", "rides", "scrambled", "steve" };
+
+
+        //List<string> wordBank = new List<string> { "fish", "apple", "tree", "dog", "rides", "scrambled", "steve" };
 
         // MAKING PLAYER VARIABLE
         Player guesser;
@@ -26,8 +30,9 @@ namespace HangManStarterKit
         {
             this.guesser = guesser;
             Random r = new Random();
-            int index = r.Next(0, wordBank.Count);
-            word = wordBank[index];
+            int index = r.Next(0, lines.Length);            
+            word = lines[index].ToLower();
+            
 
             Setup();
         }
